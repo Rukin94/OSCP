@@ -2,62 +2,20 @@
 
 # Enumeration
 
-### Autorecon
-
-```jsx
-sudo $(which autorecon) --only-scans-dir 192.168.193.153
-```
 
 ### nmap
 
-```jsx
-sudo nmap -p- -Pn -vvv --defeat-rst-ratelimit -oN nmap_all 192.168.193.153
-```
 
-```jsx
-cat nmap_all | grep 'open' | awk '{ print $1 }' | awk '{print ($0+0)}' | sed -z 's/\n/,/g;s/,$/\n/'
-```
 
-```jsx
-sudo nmap -v -A -Pn -oN nmap_A -p {ports} 192.168.193.153
-```
 
-```jsx
-sudo nmap -p- -A --open -vvv dc01
-```
 
-```jsx
-sudo nmap -sV -Pn -v -p 445 --script "vuln" 192.168.50.124
-```
 
-## FTP
-
-```jsx
-ftp -aA4 {IPv4}
-```
-
-```jsx
-wget -m ftp://anonymous:anonymous@10.10.10.98
-```
-
-```jsx
-hydra -V -C /usr/share/seclists/Passwords/Default-Credentials/ftp-betterdefaultpasslist.txt 192.168.157.46 ftp
-```
-
+FTP
 ```jsx
 user
 ```
 
-<aside>
-💡 In FTP, binaries in ASCII mode will make the file not executable. Set the mode to `binary`.
 
-</aside>
-
-```jsx
-echo "test" > test.txt
-put test.txt
-put ~/Desktop/share/php/html-php-backdoor.php html-php-backdoor.php
-```
 
 <aside>
 💡 Try to do `cd ..` (in kiero it let do traversal)
