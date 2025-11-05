@@ -694,17 +694,6 @@ git diff <commit hash>
 
 
 
-```jsx
-
-
-Find-DomainShare -CheckShareAccess
-
-Find-InterestingDomainAcl -ResolveGUIDs
-Get-GPO -Guid 31B2F340-016D-11D2-945F-00C04FB984F9
-
-```
-
-
 ### Kerberoasting
 
 ```jsx
